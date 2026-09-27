@@ -412,6 +412,7 @@
     endUTC:   "20261003T120000Z",   // assumed 3 hours
     address:  "רימון 24, יערה",
     addressEn:"24 Rimon Street, Ya'ara",
+    coords:   "33.069942,35.190947",   // exact pin from Waze
     whatsapp: ""                    // e.g. "972501234567"; empty = guest picks a contact
   };
 
@@ -468,9 +469,8 @@
   });
 
   /* ----- links ----- */
-  const q = encodeURIComponent(EVENT.address);
-  document.getElementById('waze').href  = `https://waze.com/ul?q=${q}&navigate=yes`;
-  document.getElementById('gmaps').href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+  document.getElementById('waze').href  = `https://waze.com/ul?ll=${EVENT.coords}&navigate=yes`;
+  document.getElementById('gmaps').href = `https://www.google.com/maps/search/?api=1&query=${EVENT.coords}`;
   document.getElementById('gcal').href =
     `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(EVENT.title)}` +
     `&dates=${EVENT.startUTC}/${EVENT.endUTC}&location=${encodeURIComponent(EVENT.addressEn)}`;
